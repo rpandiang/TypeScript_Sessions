@@ -19,11 +19,11 @@ const user2: User = {
     isActive: false,
 };
 
-//Interface
+//Interface - optional properties
 interface IUser {
     id: number;
     name: string;
-    isActive: boolean;
+    isActive?: boolean; //this property is optional
 }
 
 const user3: IUser = {
