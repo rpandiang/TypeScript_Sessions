@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Training Session Links</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #f4f7fb, #eaf1ff);
+        color: #1f2937;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 24px;
+      }
+
+      .card {
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 10px 25px rgba(31, 41, 55, 0.08);
+        padding: 24px;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 24px;
+        color: #1d4ed8;
+      }
+
+      form {
+        display: grid;
+        grid-template-columns: 1fr 2fr auto;
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+
+      input,
+      button {
+        padding: 12px 14px;
+        border-radius: 10px;
+        border: 1px solid #d1d5db;
+        font-size: 15px;
+      }
+
+      input:focus {
+        outline: 2px solid #93c5fd;
+        border-color: #60a5fa;
+      }
+
+      button {
+        background: #2563eb;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      button:hover {
+        background: #1d4ed8;
+      }
+
+      .session-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .session-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 16px;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        margin-bottom: 12px;
+        background: #f9fafb;
+      }
+
+      .session-item a {
+        color: #1d4ed8;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .session-item a:hover {
+        text-decoration: underline;
+      }
+
+      .remove-btn {
+        background: #ef4444;
+        color: white;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      .empty-state {
+        text-align: center;
+        color: #6b7280;
+        padding: 20px;
+        border: 1px dashed #cbd5e1;
+        border-radius: 12px;
+      }
+
+      @media (max-width: 680px) {
+        form {
+          grid-template-columns: 1fr;
+        }
+
+        .session-item {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <h1>Training Session Links</h1>
+
+        <form id="sessionForm">
+          <input id="sessionName" type="text" placeholder="Session name" required />
+          <input id="sessionLink" type="url" placeholder="Paste recording link" required />
+          <button type="submit">Add Session</button>
+        </form>
+
+        <ul id="sessionList" class="session-list"></ul>
+      </div>
+    </div>
+
+    <script>
+      const STORAGE_KEY = 'trainingSessionLinks';
+
+      const defaultSessions = [
+        {
+          name: 'Session 1',
+          link: 'https://example.com/session-1-recording'
+        }
+      ];
+
+      const form = document.getElementById('sessionForm');
+      const sessionList = document.getElementById('sessionList');
+      const sessionName = document.getElementById('sessionName');
+      const sessionLink = document.getElementById('sessionLink');
+
+      function getSessions() {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (!saved) {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultSessions));
+          return [...defaultSessions];
+        }
+
+        try {
+          const sessions = JSON.parse(saved);
+          return Array.isArray(sessions) && sessions.length ? sessions : [...defaultSessions];
+        } catch {
+          return [...defaultSessions];
+        }
+      }
+
+      function saveSessions(sessions) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(sessions));
+      }
+
+      function renderSessions() {
+        const sessions = getSessions();
+
+        if (!sessions.length) {
+          sessionList.innerHTML = '<li class="empty-state">No training links added yet.</li>';
+          return;
+        }
+
+        sessionList.innerHTML = sessions
+          .map(
+            (session, index) => `
+              <li class="session-item">
+                <div>
+                  <strong>${session.name}</strong><br />
+                  <a href="${session.link}" target="_blank" rel="noopener noreferrer">Open recording</a>
+                </div>
+                <button class="remove-btn" data-index="${index}">Remove</button>
+              </li>
+            `
+          )
+          .join('');
+      }
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const name = sessionName.value.trim();
+        const link = sessionLink.value.trim();
+
+        if (!name || !link) return;
+
+        const sessions = getSessions();
+        sessions.push({ name, link });
+        saveSessions(sessions);
+        renderSessions();
+
+        form.reset();
+        sessionName.focus();
+      });
+
+      sessionList.addEventListener('click', function (event) {
+        if (!event.target.classList.contains('remove-btn')) return;
+
+        const index = Number(event.target.dataset.index);
+        const sessions = getSessions();
+        sessions.splice(index, 1);
+        saveSessions(sessions);
+        renderSessions();
+      });
+
+      renderSessions();
+    </script>
+  </body>
+</html>
