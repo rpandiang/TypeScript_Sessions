@@ -17,7 +17,7 @@
       }
 
       .container {
-        max-width: 900px;
+        max-width: 1000px;
         margin: 40px auto;
         padding: 24px;
       }
@@ -35,38 +35,6 @@
         color: #1d4ed8;
       }
 
-      form {
-        display: grid;
-        grid-template-columns: 1fr 2fr auto;
-        gap: 12px;
-        margin-bottom: 24px;
-      }
-
-      input,
-      button {
-        padding: 12px 14px;
-        border-radius: 10px;
-        border: 1px solid #d1d5db;
-        font-size: 15px;
-      }
-
-      input:focus {
-        outline: 2px solid #93c5fd;
-        border-color: #60a5fa;
-      }
-
-      button {
-        background: #2563eb;
-        color: white;
-        border: none;
-        cursor: pointer;
-        font-weight: 600;
-      }
-
-      button:hover {
-        background: #1d4ed8;
-      }
-
       .session-list {
         list-style: none;
         padding: 0;
@@ -77,12 +45,16 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 12px;
-        padding: 14px 16px;
+        gap: 16px;
+        padding: 16px 18px;
         border: 1px solid #e5e7eb;
         border-radius: 12px;
         margin-bottom: 12px;
         background: #f9fafb;
+      }
+
+      .session-item strong {
+        font-size: 16px;
       }
 
       .session-item a {
@@ -95,31 +67,15 @@
         text-decoration: underline;
       }
 
-      .remove-btn {
-        background: #ef4444;
-        color: white;
-        padding: 8px 12px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-      }
-
-      .empty-state {
-        text-align: center;
+      .no-recording {
         color: #6b7280;
-        padding: 20px;
-        border: 1px dashed #cbd5e1;
-        border-radius: 12px;
+        font-style: italic;
       }
 
       @media (max-width: 680px) {
-        form {
-          grid-template-columns: 1fr;
-        }
-
         .session-item {
-          align-items: flex-start;
           flex-direction: column;
+          align-items: flex-start;
         }
       }
     </style>
@@ -129,101 +85,43 @@
       <div class="card">
         <h1>Training Session Links</h1>
 
-        <form id="sessionForm">
-          <input id="sessionName" type="text" placeholder="Session name" required />
-          <input id="sessionLink" type="url" placeholder="Paste recording link" required />
-          <button type="submit">Add Session</button>
-        </form>
+        <ul class="session-list">
+          <li class="session-item">
+            <strong>Session 1 - Introduction</strong>
+            <span class="no-recording">No Recording available</span>
+          </li>
 
-        <ul id="sessionList" class="session-list"></ul>
+          <li class="session-item">
+            <strong>Session 2 - 9/20</strong>
+            <a href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDBLBXNBUXY66VF3VV6JFY6ULFLH&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQArDdoaXx71S7rXyS49RZVnAU3e7VPDFvuv_cus-4mNaTE&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQArDdoaXx71S7rXyS49RZVnAU3e7VPDFvuv_cus-4mNaTE&threadId=19%3Ameeting_OTZiODBhMjctODdlNS00ZGM3LWFmMTEtOWM3NjcwNmQ1MGE3%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=a9330e32-f3b2-496a-bb70-93da6cd2ed30&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet" target="_blank" rel="noopener noreferrer">Recap: Session2 - QEA_T & D_NA_Playwright & Typescript_Sep 18 Sunday, September 20 | Meeting | Microsoft Teams</a>
+          </li>
+
+          <li class="session-item">
+            <strong>Session 3 - 9/21</strong>
+            <a href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDG44OIRWFH2ZVGZMOEUPJTOUKAB&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQDc45EbFPrNTZY4lHpm6igBARfklBOKg42ruLEHHU6yVTY&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQDc45EbFPrNTZY4lHpm6igBARfklBOKg42ruLEHHU6yVTY&threadId=19%3Ameeting_ODA2NTMxNDgtNjJkMi00YWJlLWJmYTktMWVmNzNjMTM0MjEw%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=5515698e-9d90-4842-9c5d-8e884688fb2c&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet" target="_blank" rel="noopener noreferrer">Recap: Session3 - QEA_T & D_NA_Playwright & Typescript_Sep 18 Monday, September 21 | Meeting | Microsoft Teams</a>
+          </li>
+
+          <li class="session-item">
+            <strong>Session 4 - 9/22</strong>
+            <a href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDFG7GFDJFSQFRCL4IPDXOL4Z5EU&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQCm-Yo0llAsRL4h47uXzPSUAaYcsJcVtGrMgT4P3uqxVag&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQCm-Yo0llAsRL4h47uXzPSUAaYcsJcVtGrMgT4P3uqxVag&threadId=19%3Ameeting_ODhmMWU5ZTEtODY1MC00NzgyLTlmYWItMzc3NjIwZGM1YjVm%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=fac747bf-bf2d-427a-aae8-2374e5e20e37&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet" target="_blank" rel="noopener noreferrer">Recap: Session4 - QEA_T & D_NA_Playwright & Typescript_Sep 18 Tuesday, September 22 | Meeting | Microsoft Teams</a>
+          </li>
+
+          <li class="session-item">
+            <strong>Session 5 - 9/23</strong>
+            <a href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDFUTCYHRXFMMBG2P7UIC346SAN6&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQC0mLB43KxgTaf-iBb56QG-AaEYwoiEHmHwwkabOVX5uKM&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQC0mLB43KxgTaf-iBb56QG-AaEYwoiEHmHwwkabOVX5uKM&threadId=19%3Ameeting_YzMyYmIzZTYtNzEyMS00ZGI2LWEzY2UtYWMxMDM4NGJiMjBh%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=6a5a53c4-9161-4f88-b4af-fb0ffce00db3&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet" target="_blank" rel="noopener noreferrer">Recap: Session5 - QEA_T & D_NA_Playwright & Typescript_Sep 18 Wednesday, September 23 | Meeting | Microsoft Teams</a>
+          </li>
+
+          <li class="session-item">
+            <strong>Session 6 - 9/24</strong>
+            <a href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDHBO6YSXUUVF5GZCBDLPUEDLD2Z&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQDhd7Er0pUvTZEEa30INY9ZAefLQRYH25JM9O5_AoEvAEc&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQDhd7Er0pUvTZEEa30INY9ZAefLQRYH25JM9O5_AoEvAEc&threadId=19%3Ameeting_Y2JiMDMzYmUtMTVlYi00Y2ZmLTlmMTktODc5Y2U1NmYwNTMw%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=5845ff1e-9f41-417d-9cd6-e1ceacddd81d&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet" target="_blank" rel="noopener noreferrer">Recap: Session6 - QEA_T & D_NA_Playwright & Typescript_Sep 18 Thursday, September 24 | Meeting | Microsoft Teams</a>
+          </li>
+
+          <li class="session-item">
+            <strong>Session 7 - 9/27</strong>
+            <a href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDBGJ65CD3GASJAI6K2LA7O6PST3&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQAmT7oh7MCSQI8rSwfd58p7AX2ybrNkmLtgWCR3vATuwY8&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQAmT7oh7MCSQI8rSwfd58p7AX2ybrNkmLtgWCR3vATuwY8&threadId=19%3Ameeting_ZWEwMTkzZGQtMmE3Ny00NDliLWFiNzgtZWJlODlkMTBhMWUw%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=bce2e3ce-dade-484f-9021-5d9ae8a4819c&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet" target="_blank" rel="noopener noreferrer">Recap: Session7 - QEA_T & D_NA_Playwright & Typescript_Sep 18 Sunday, September 27 | Meeting | Microsoft Teams</a>
+          </li>
+        </ul>
       </div>
     </div>
-
-    <script>
-      const STORAGE_KEY = 'trainingSessionLinks';
-
-      const defaultSessions = [
-        {
-          name: 'Session 1',
-          link: 'https://example.com/session-1-recording'
-        }
-      ];
-
-      const form = document.getElementById('sessionForm');
-      const sessionList = document.getElementById('sessionList');
-      const sessionName = document.getElementById('sessionName');
-      const sessionLink = document.getElementById('sessionLink');
-
-      function getSessions() {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        if (!saved) {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultSessions));
-          return [...defaultSessions];
-        }
-
-        try {
-          const sessions = JSON.parse(saved);
-          return Array.isArray(sessions) && sessions.length ? sessions : [...defaultSessions];
-        } catch {
-          return [...defaultSessions];
-        }
-      }
-
-      function saveSessions(sessions) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(sessions));
-      }
-
-      function renderSessions() {
-        const sessions = getSessions();
-
-        if (!sessions.length) {
-          sessionList.innerHTML = '<li class="empty-state">No training links added yet.</li>';
-          return;
-        }
-
-        sessionList.innerHTML = sessions
-          .map(
-            (session, index) => `
-              <li class="session-item">
-                <div>
-                  <strong>${session.name}</strong><br />
-                  <a href="${session.link}" target="_blank" rel="noopener noreferrer">Open recording</a>
-                </div>
-                <button class="remove-btn" data-index="${index}">Remove</button>
-              </li>
-            `
-          )
-          .join('');
-      }
-
-      form.addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        const name = sessionName.value.trim();
-        const link = sessionLink.value.trim();
-
-        if (!name || !link) return;
-
-        const sessions = getSessions();
-        sessions.push({ name, link });
-        saveSessions(sessions);
-        renderSessions();
-
-        form.reset();
-        sessionName.focus();
-      });
-
-      sessionList.addEventListener('click', function (event) {
-        if (!event.target.classList.contains('remove-btn')) return;
-
-        const index = Number(event.target.dataset.index);
-        const sessions = getSessions();
-        sessions.splice(index, 1);
-        saveSessions(sessions);
-        renderSessions();
-      });
-
-      renderSessions();
-    </script>
   </body>
 </html>
