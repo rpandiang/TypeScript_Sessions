@@ -17,3 +17,20 @@ console.log(addNumbers(5, 3));
 const reverseString = (str: string): string => str.split("").reverse().join("");
 console.log(reverseString("TypeScript"));
 
+//Question 3: class in TypeScript
+class Car {
+    brand: string;
+    constructor(brand: string) {
+        this.brand = brand;
+    }
+}
+const myCar = new Car("Toyota");
+console.log(myCar.brand);
+
+const ElectricCar = class extends Car {
+    constructor(brand: string) {
+        super(brand);
+    }
+};
+const myElectricCar = new ElectricCar("Tesla");
+console.log(myElectricCar.brand);
