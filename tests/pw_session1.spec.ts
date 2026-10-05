@@ -10,6 +10,7 @@ test('test1', async () => {
     await page.getByPlaceholder('Username').fill('Admin');
     await page.getByPlaceholder('Password').fill('admin123');
     await page.getByRole('button', { name: 'Login' }).click();
+    await page.pause();
     await page.getByText('PIM').click();
 
     await browser.close();
