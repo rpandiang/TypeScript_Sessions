@@ -44,7 +44,7 @@ export default defineConfig({
     headless: false,
     screenshot: 'only-on-failure',
     video: 'only-on-failure',
-    baseURL: 'http://www.verizon.com',
+    baseURL: 'https://testautomationpractice.blogspot.com/',
   },
 
   /* Configure projects for major browsers */
