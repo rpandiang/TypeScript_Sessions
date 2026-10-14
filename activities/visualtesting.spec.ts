@@ -23,7 +23,7 @@ async function loginToOrangeHRM(page: any) {
 //   - Uses toMatchSnapshot() to compare against a baseline snapshot.
 //   - Run once to generate the baseline, then subsequent runs will compare.
 // -----------------------------------------------------------------------
-test('Visual Test 1 - Dashboard full page snapshot', async ({ page }) => {
+test.only('Visual Test 1 - Dashboard full page snapshot', async ({ page }) => {
     await loginToOrangeHRM(page);
 
     // Ensure the dashboard header is visible before taking screenshot
