@@ -1,297 +1,392 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Training Session Links</title>
-    <style>
-      * {
-        box-sizing: border-box;
-      }
 
-      body {
-        margin: 0;
-        font-family: "Segoe UI", Arial, sans-serif;
-        background: linear-gradient(180deg, #0b1220 0%, #111827 100%);
-        color: #e5e7eb;
-        scroll-behavior: smooth;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Training Session Links</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-      .container {
-        max-width: 1100px;
-        margin: 42px auto;
-        padding: 24px;
-      }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(180deg, #0b1220 0%, #111827 100%);
+      color: #e5e7eb;
+      scroll-behavior: smooth;
+    }
 
-      .card {
-        background: rgba(15, 23, 42, 0.9);
-        border: 1px solid rgba(148, 163, 184, 0.18);
-        border-radius: 18px;
-        box-shadow: 0 14px 30px rgba(2, 6, 23, 0.45);
-        padding: 28px;
-      }
+    .container {
+      max-width: 1100px;
+      margin: 42px auto;
+      padding: 24px;
+    }
 
+    .card {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 18px;
+      box-shadow: 0 14px 30px rgba(2, 6, 23, 0.45);
+      padding: 28px;
+    }
+
+    .header {
+      display: block;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+      padding-bottom: 18px;
+      margin-bottom: 20px;
+    }
+
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .top-nav {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .top-nav a {
+      text-decoration: none;
+      color: #cbd5e1;
+      background: rgba(148, 163, 184, 0.08);
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      padding: 9px 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .top-nav a:hover {
+      background: rgba(59, 130, 246, 0.12);
+      color: #e0f2fe;
+      border-color: rgba(96, 165, 250, 0.4);
+    }
+
+    h1 {
+      margin: 0;
+      color: #f8fafc;
+      font-size: clamp(1.8rem, 2vw, 2.4rem);
+    }
+
+    .stats {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .badge {
+      background: rgba(59, 130, 246, 0.16);
+      border: 1px solid rgba(96, 165, 250, 0.35);
+      color: #bfdbfe;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+    }
+
+    .session-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .session-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 18px;
+      align-items: center;
+      padding: 18px 20px;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-left: 5px solid #3b82f6;
+      border-radius: 14px;
+      margin-bottom: 14px;
+      background: rgba(17, 24, 39, 0.9);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .session-item:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.12);
+    }
+
+    .session-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #f8fafc;
+    }
+
+    .session-link {
+      display: inline-flex;
+      align-items: center;
+      font-weight: 600;
+      color: #93c5fd;
+      text-decoration: none;
+      line-height: 1.5;
+    }
+
+    .session-link:hover {
+      text-decoration: underline;
+    }
+
+    .session-link::before {
+      content: "🔗";
+      margin-right: 8px;
+      font-size: 0.9rem;
+    }
+
+    .no-recording {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.12);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      color: #cbd5e1;
+      font-weight: 600;
+      font-style: normal;
+    }
+
+    .assessment-section {
+      margin-top: 28px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .content-section {
+      scroll-margin-top: 20px;
+    }
+
+    .assessment-header {
+      margin: 0 0 14px;
+      font-size: 1.2rem;
+      color: #f8fafc;
+    }
+
+    @media (max-width: 720px) {
       .header {
-        display: block;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.2);
-        padding-bottom: 18px;
-        margin-bottom: 20px;
+        flex-direction: column;
+        align-items: flex-start;
       }
 
       .header-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 16px;
+        flex-direction: column;
+        align-items: flex-start;
       }
 
       .top-nav {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        flex-wrap: wrap;
-        margin-top: 18px;
-      }
-
-      .top-nav a {
-        text-decoration: none;
-        color: #cbd5e1;
-        background: rgba(148, 163, 184, 0.08);
-        border: 1px solid rgba(148, 163, 184, 0.15);
-        padding: 9px 14px;
-        border-radius: 10px;
-        font-weight: 600;
-        transition: all 0.2s ease;
-      }
-
-      .top-nav a:hover {
-        background: rgba(59, 130, 246, 0.12);
-        color: #e0f2fe;
-        border-color: rgba(96, 165, 250, 0.4);
-      }
-
-      h1 {
-        margin: 0;
-        color: #f8fafc;
-        font-size: clamp(1.8rem, 2vw, 2.4rem);
+        width: 100%;
       }
 
       .stats {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-      }
-
-      .badge {
-        background: rgba(59, 130, 246, 0.16);
-        border: 1px solid rgba(96, 165, 250, 0.35);
-        color: #bfdbfe;
-        font-weight: 700;
-        padding: 8px 14px;
-        border-radius: 999px;
-        font-size: 0.82rem;
-      }
-
-      .session-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
+        justify-content: flex-start;
       }
 
       .session-item {
-        display: grid;
-        grid-template-columns: 180px 1fr;
-        gap: 18px;
-        align-items: center;
-        padding: 18px 20px;
-        border: 1px solid rgba(148, 163, 184, 0.18);
-        border-left: 5px solid #3b82f6;
-        border-radius: 14px;
-        margin-bottom: 14px;
-        background: rgba(17, 24, 39, 0.9);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        grid-template-columns: 1fr;
+        gap: 10px;
       }
+    }
+  </style>
+</head>
 
-      .session-item:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.12);
-      }
-
-      .session-name {
-        font-size: 1rem;
-        font-weight: 700;
-        color: #f8fafc;
-      }
-
-      .session-link {
-        display: inline-flex;
-        align-items: center;
-        font-weight: 600;
-        color: #93c5fd;
-        text-decoration: none;
-        line-height: 1.5;
-      }
-
-      .session-link:hover {
-        text-decoration: underline;
-      }
-
-      .session-link::before {
-        content: "🔗";
-        margin-right: 8px;
-        font-size: 0.9rem;
-      }
-
-      .no-recording {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 8px 12px;
-        border-radius: 999px;
-        background: rgba(148, 163, 184, 0.12);
-        border: 1px solid rgba(148, 163, 184, 0.2);
-        color: #cbd5e1;
-        font-weight: 600;
-        font-style: normal;
-      }
-
-      .assessment-section {
-        margin-top: 28px;
-        padding-top: 22px;
-        border-top: 1px solid rgba(148, 163, 184, 0.2);
-      }
-
-      .content-section {
-        scroll-margin-top: 20px;
-      }
-
-      .assessment-header {
-        margin: 0 0 14px;
-        font-size: 1.2rem;
-        color: #f8fafc;
-      }
-
-      @media (max-width: 720px) {
-        .header {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .header-row {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .top-nav {
-          width: 100%;
-        }
-
-        .stats {
-          justify-content: flex-start;
-        }
-
-        .session-item {
-          grid-template-columns: 1fr;
-          gap: 10px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="card">
-        <div class="header">
-          <div class="header-row">
-            <h1>Playwright &amp; Typescript Session Links</h1>
-            <div class="stats">
-              <span class="badge">11 sessions</span>
-              <span class="badge">10 recordings</span>
-            </div>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="header">
+        <div class="header-row">
+          <h1>Playwright &amp; Typescript Session Links</h1>
+          <div class="stats">
+            <span class="badge">19 sessions</span>
+            <span class="badge">16 recordings</span>
           </div>
-
-          <nav class="top-nav" aria-label="Main navigation">
-            <a href="#sessions">Session Recordings</a>
-            <a href="#assessments">Assessments</a>
-            <a href="#assignment-tracker">Assignment Tracker</a>
-          </nav>
         </div>
 
-        <section id="sessions" class="content-section">
-          <ul class="session-list">
-            <li class="session-item">
-              <div class="session-name">Session 1 - Introduction</div>
-              <span class="no-recording">No Recording available</span>
-            </li>
-
-            <li class="session-item">
-              <div class="session-name">Session 2 - 9/20</div>
-              <a class="session-link" href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDBLBXNBUXY66VF3VV6JFY6ULFLH&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQArDdoaXx71S7rXyS49RZVnAU3e7VPDFvuv_cus-4mNaTE&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQArDdoaXx71S7rXyS49RZVnAU3e7VPDFvuv_cus-4mNaTE&threadId=19%3Ameeting_OTZiODBhMjctODdlNS00ZGM3LWFmMTEtOWM3NjcwNmQ1MGE3%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=a9330e32-f3b2-496a-bb70-93da6cd2ed30&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet" target="_blank" rel="noopener noreferrer">Recap: Session2 - QEA_T &amp; D_NA_Playwright &amp; Typescript_Sep 18 Sunday, September 20 | Meeting | Microsoft Teams</a>
-            </li>
-
-            <li class="session-item">
-              <div class="session-name">Session 3 - 9/21</div>
-              <a class="session-link" href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDG44OIRWFH2ZVGZMOEUPJTOUKAB&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQDc45EbFPrNTZY4lHpm6igBARfklBOKg42ruLEHHU6yVTY&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQDc45EbFPrNTZY4lHpm6igBARfklBOKg42ruLEHHU6yVTY&threadId=19%3Ameeting_ODA2NTMxNDgtNjJkMi00YWJlLWJmYTktMWVmNzNjMTM0MjEw%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=5515698e-9d90-4842-9c5d-8e884688fb2c&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet" target="_blank" rel="noopener noreferrer">Recap: Session3 - QEA_T &amp; D_NA_Playwright &amp; Typescript_Sep 18 Monday, September 21 | Meeting | Microsoft Teams</a>
-            </li>
-
-            <li class="session-item">
-              <div class="session-name">Session 4 - 9/22</div>
-              <a class="session-link" href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDFG7GFDJFSQFRCL4IPDXOL4Z5EU&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQCm-Yo0llAsRL4h47uXzPSUAaYcsJcVtGrMgT4P3uqxVag&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQCm-Yo0llAsRL4h47uXzPSUAaYcsJcVtGrMgT4P3uqxVag&threadId=19%3Ameeting_ODhmMWU5ZTEtODY1MC00NzgyLTlmYWItMzc3NjIwZGM1YjVm%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=fac747bf-bf2d-427a-aae8-2374e5e20e37&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet" target="_blank" rel="noopener noreferrer">Recap: Session4 - QEA_T &amp; D_NA_Playwright &amp; Typescript_Sep 18 Tuesday, September 22 | Meeting | Microsoft Teams</a>
-            </li>
-
-            <li class="session-item">
-              <div class="session-name">Session 5 - 9/23</div>
-              <a class="session-link" href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDFUTCYHRXFMMBG2P7UIC346SAN6&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQC0mLB43KxgTaf-iBb56QG-AaEYwoiEHmHwwkabOVX5uKM&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQC0mLB43KxgTaf-iBb56QG-AaEYwoiEHmHwwkabOVX5uKM&threadId=19%3Ameeting_YzMyYmIzZTYtNzEyMS00ZGI2LWEzY2UtYWMxMDM4NGJiMjBh%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=6a5a53c4-9161-4f88-b4af-fb0ffce00db3&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet" target="_blank" rel="noopener noreferrer">Recap: Session5 - QEA_T &amp; D_NA_Playwright &amp; Typescript_Sep 18 Wednesday, September 23 | Meeting | Microsoft Teams</a>
-            </li>
-
-            <li class="session-item">
-              <div class="session-name">Session 6 - 9/24</div>
-              <a class="session-link" href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDHBO6YSXUUVF5GZCBDLPUEDLD2Z&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQDhd7Er0pUvTZEEa30INY9ZAefLQRYH25JM9O5_AoEvAEc&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQDhd7Er0pUvTZEEa30INY9ZAefLQRYH25JM9O5_AoEvAEc&threadId=19%3Ameeting_Y2JiMDMzYmUtMTVlYi00Y2ZmLTlmMTktODc5Y2U1NmYwNTMw%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=5845ff1e-9f41-417d-9cd6-e1ceacddd81d&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet" target="_blank" rel="noopener noreferrer">Recap: Session6 - QEA_T &amp; D_NA_Playwright &amp; Typescript_Sep 18 Thursday, September 24 | Meeting | Microsoft Teams</a>
-            </li>
-
-            <li class="session-item">
-              <div class="session-name">Session 7 - 9/27</div>
-              <a class="session-link" href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDBGJ65CD3GASJAI6K2LA7O6PST3&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQAmT7oh7MCSQI8rSwfd58p7AX2ybrNkmLtgWCR3vATuwY8&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQAmT7oh7MCSQI8rSwfd58p7AX2ybrNkmLtgWCR3vATuwY8&threadId=19%3Ameeting_ZWEwMTkzZGQtMmE3Ny00NDliLWFiNzgtZWJlODlkMTBhMWUw%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=bce2e3ce-dade-484f-9021-5d9ae8a4819c&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet" target="_blank" rel="noopener noreferrer">Recap: Session7 - QEA_T &amp; D_NA_Playwright &amp; Typescript_Sep 18 Sunday, September 27 | Meeting | Microsoft Teams</a>
-            </li>
-
-            <li class="session-item">
-              <div class="session-name">Session 8 - 9/28</div>
-              <a class="session-link" href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDFZT2RJIWTYKZDIVCUDQBFO44RH&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQC5nqKUWnhWRoqKg4BK7nInAZq5hgYZLham_VblmqfpTlQ&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQC5nqKUWnhWRoqKg4BK7nInAZq5hgYZLham_VblmqfpTlQ&threadId=19%3Ameeting_ZGEyYzM0MzUtMzFkNi00YTI4LWE0MGQtMDAxMGRkYzliOGE2%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=357565d0-4136-4aab-a39b-44597c35cf3f&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet" target="_blank" rel="noopener noreferrer">Recap: Session8 - QEA_T &amp; D_NA_Playwright &amp; Typescript_Sep 18 Monday, September 28 | Meeting | Microsoft Teams</a>
-            </li>
-
-            <li class="session-item">
-              <div class="session-name">Session 9 - 9/29</div>
-              <a class="session-link" href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDGWDSESYHXCDRGZJBMW73CVDBKJ&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQDWHIksHuIcTZSFlv7FUYVJATxxZxXl-JVL0foTf3CRIu0&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQDWHIksHuIcTZSFlv7FUYVJATxxZxXl-JVL0foTf3CRIu0&threadId=19%3Ameeting_NTliM2FhZmUtOTM4My00ZTVkLWIzNzYtNzk3NDg2ZjdmZTQ1%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=971088cf-cd6b-4459-a710-1410aff4b9b2&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet" target="_blank" rel="noopener noreferrer">Recap: Session9 - QEA_T &amp; D_NA_Playwright &amp; Typescript_Sep 18 Tuesday, September 29 | Meeting | Microsoft Teams</a>
-            </li>
-
-            <li class="session-item">
-              <div class="session-name">Session 10 - 9/30</div>
-              <a class="session-link" href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDD6HZEXMU537BGI3WCK4ARNOLGH&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQB-Pkl2U7v4TI3YSuAi1yzHAWQywMCCED_sf3zwJHtidOc&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQB-Pkl2U7v4TI3YSuAi1yzHAWQywMCCED_sf3zwJHtidOc&threadId=19%3Ameeting_NDU5ZDU1NDgtM2YyOC00MDg5LTliMmItNzVlYTliOGZlNDJl%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=5f719d55-7f83-4d14-94a6-190363c5b691&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet" target="_blank" rel="noopener noreferrer">Recap: Session10 - QEA_T &amp; D_NA_Playwright &amp; Typescript_Sep 18 Wednesday, September 30 | Meeting | Microsoft Teams</a>
-            </li>
-
-            <li class="session-item">
-              <div class="session-name">Session 11 - 10/4</div>
-              <a class="session-link" href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDFRIEQN23JOANA3XKKE2YIGWG4D&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQCxQSDdbS4DQbupRNYQaxuDARENEInWdxn3JXgJZDzs13E&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQCxQSDdbS4DQbupRNYQaxuDARENEInWdxn3JXgJZDzs13E&threadId=19%3Ameeting_M2ZjNWUwOTItZjhkMi00N2FlLWFmMjgtZGZjNDVhZWIxZWYx%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=13deecf2-b95c-4d69-8635-f1ad9f3ea71e&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet" target="_blank" rel="noopener noreferrer">Recap: Session11 - QEA_T &amp; D_NA_Playwright &amp; Typescript_Sep 18 Sunday, October 4 | Meeting | Microsoft Teams</a>
-            </li>
-          </ul>
-        </section>
-
-        <section id="assessments" class="content-section assessment-section">
-          <h2 class="assessment-header">Assessment</h2>
-          <div class="session-item">
-            <div class="session-name">Typescript Activity - 9/27</div>
-            <a class="session-link" href="https://cognizantonline-my.sharepoint.com/:w:/g/personal/2422034_cognizant_com/IQAzxh_oiQ1lSrL0E-8GuZYhAXFpXyvmBpRx-Ulu3hsI7T0?e=HekIII" target="_blank" rel="noopener noreferrer">TypeScript Activity.docx</a>
-          </div>
-        </section>
-
-        <section id="assignment-tracker" class="content-section assessment-section">
-          <h2 class="assessment-header">Assignment Tracker</h2>
-          <div class="session-item">
-            <div class="session-name">SEP 18 PW TS Onshore</div>
-            <a class="session-link" href="https://cognizantonline-my.sharepoint.com/:x:/r/personal/2422034_cognizant_com/_layouts/15/Doc.aspx?sourcedoc=%7B9F3BE8CF-8C11-43A6-BD9F-8F3531683CBB%7D&file=Assignment%20Tracker%20-%20SEP%2018%20PW%20TS%20Onshore%20-%207%2030%20to%208%2030%20AM%20IST.xlsx&action=default&mobileredirect=true&DefaultItemOpen=1&wdwpf=c" target="_blank" rel="noopener noreferrer">Assignment Tracker - 7:30 to 8:30 AM IST.xlsx</a>
-          </div>
-        </section>
+        <nav class="top-nav" aria-label="Main navigation">
+          <a href="#sessions">Session Recordings</a>
+          <a href="#assessments">Assessments</a>
+          <a href="#assignment-tracker">Assignment Tracker</a>
+        </nav>
       </div>
+
+      <section id="sessions" class="content-section">
+        <ul class="session-list">
+          <li class="session-item">
+            <div class="session-name">Session 1 - Introduction</div>
+            <span class="no-recording">No Recording available</span>
+          </li>
+
+          <li class="session-item">
+            <div class="session-name">Session 2 - 9/20</div>
+            <a class="session-link"
+              href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDBLBXNBUXY66VF3VV6JFY6ULFLH&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQArDdoaXx71S7rXyS49RZVnAU3e7VPDFvuv_cus-4mNaTE&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQArDdoaXx71S7rXyS49RZVnAU3e7VPDFvuv_cus-4mNaTE&threadId=19%3Ameeting_OTZiODBhMjctODdlNS00ZGM3LWFmMTEtOWM3NjcwNmQ1MGE3%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=a9330e32-f3b2-496a-bb70-93da6cd2ed30&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet"
+              target="_blank" rel="noopener noreferrer">Recap: Session2 - QEA_T &amp; D_NA_Playwright &amp;
+              Typescript_Sep 18 Sunday, September 20 | Meeting | Microsoft Teams</a>
+          </li>
+
+          <li class="session-item">
+            <div class="session-name">Session 3 - 9/21</div>
+            <a class="session-link"
+              href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDG44OIRWFH2ZVGZMOEUPJTOUKAB&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQDc45EbFPrNTZY4lHpm6igBARfklBOKg42ruLEHHU6yVTY&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQDc45EbFPrNTZY4lHpm6igBARfklBOKg42ruLEHHU6yVTY&threadId=19%3Ameeting_ODA2NTMxNDgtNjJkMi00YWJlLWJmYTktMWVmNzNjMTM0MjEw%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=5515698e-9d90-4842-9c5d-8e884688fb2c&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet"
+              target="_blank" rel="noopener noreferrer">Recap: Session3 - QEA_T &amp; D_NA_Playwright &amp;
+              Typescript_Sep 18 Monday, September 21 | Meeting | Microsoft Teams</a>
+          </li>
+
+          <li class="session-item">
+            <div class="session-name">Session 4 - 9/22</div>
+            <a class="session-link"
+              href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDFG7GFDJFSQFRCL4IPDXOL4Z5EU&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQCm-Yo0llAsRL4h47uXzPSUAaYcsJcVtGrMgT4P3uqxVag&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQCm-Yo0llAsRL4h47uXzPSUAaYcsJcVtGrMgT4P3uqxVag&threadId=19%3Ameeting_ODhmMWU5ZTEtODY1MC00NzgyLTlmYWItMzc3NjIwZGM1YjVm%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=fac747bf-bf2d-427a-aae8-2374e5e20e37&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet"
+              target="_blank" rel="noopener noreferrer">Recap: Session4 - QEA_T &amp; D_NA_Playwright &amp;
+              Typescript_Sep 18 Tuesday, September 22 | Meeting | Microsoft Teams</a>
+          </li>
+
+          <li class="session-item">
+            <div class="session-name">Session 5 - 9/23</div>
+            <a class="session-link"
+              href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDFUTCYHRXFMMBG2P7UIC346SAN6&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQC0mLB43KxgTaf-iBb56QG-AaEYwoiEHmHwwkabOVX5uKM&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQC0mLB43KxgTaf-iBb56QG-AaEYwoiEHmHwwkabOVX5uKM&threadId=19%3Ameeting_YzMyYmIzZTYtNzEyMS00ZGI2LWEzY2UtYWMxMDM4NGJiMjBh%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=6a5a53c4-9161-4f88-b4af-fb0ffce00db3&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet"
+              target="_blank" rel="noopener noreferrer">Recap: Session5 - QEA_T &amp; D_NA_Playwright &amp;
+              Typescript_Sep 18 Wednesday, September 23 | Meeting | Microsoft Teams</a>
+          </li>
+
+          <li class="session-item">
+            <div class="session-name">Session 6 - 9/24</div>
+            <a class="session-link"
+              href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDHBO6YSXUUVF5GZCBDLPUEDLD2Z&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQDhd7Er0pUvTZEEa30INY9ZAefLQRYH25JM9O5_AoEvAEc&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQDhd7Er0pUvTZEEa30INY9ZAefLQRYH25JM9O5_AoEvAEc&threadId=19%3Ameeting_Y2JiMDMzYmUtMTVlYi00Y2ZmLTlmMTktODc5Y2U1NmYwNTMw%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=5845ff1e-9f41-417d-9cd6-e1ceacddd81d&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet"
+              target="_blank" rel="noopener noreferrer">Recap: Session6 - QEA_T &amp; D_NA_Playwright &amp;
+              Typescript_Sep 18 Thursday, September 24 | Meeting | Microsoft Teams</a>
+          </li>
+
+          <li class="session-item">
+            <div class="session-name">Session 7 - 9/27</div>
+            <a class="session-link"
+              href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDBGJ65CD3GASJAI6K2LA7O6PST3&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQAmT7oh7MCSQI8rSwfd58p7AX2ybrNkmLtgWCR3vATuwY8&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQAmT7oh7MCSQI8rSwfd58p7AX2ybrNkmLtgWCR3vATuwY8&threadId=19%3Ameeting_ZWEwMTkzZGQtMmE3Ny00NDliLWFiNzgtZWJlODlkMTBhMWUw%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=bce2e3ce-dade-484f-9021-5d9ae8a4819c&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet"
+              target="_blank" rel="noopener noreferrer">Recap: Session7 - QEA_T &amp; D_NA_Playwright &amp;
+              Typescript_Sep 18 Sunday, September 27 | Meeting | Microsoft Teams</a>
+          </li>
+
+          <li class="session-item">
+            <div class="session-name">Session 8 - 9/28</div>
+            <a class="session-link"
+              href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDFZT2RJIWTYKZDIVCUDQBFO44RH&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQC5nqKUWnhWRoqKg4BK7nInAZq5hgYZLham_VblmqfpTlQ&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQC5nqKUWnhWRoqKg4BK7nInAZq5hgYZLham_VblmqfpTlQ&threadId=19%3Ameeting_ZGEyYzM0MzUtMzFkNi00YTI4LWE0MGQtMDAxMGRkYzliOGE2%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=357565d0-4136-4aab-a39b-44597c35cf3f&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet"
+              target="_blank" rel="noopener noreferrer">Recap: Session8 - QEA_T &amp; D_NA_Playwright &amp;
+              Typescript_Sep 18 Monday, September 28 | Meeting | Microsoft Teams</a>
+          </li>
+
+          <li class="session-item">
+            <div class="session-name">Session 9 - 9/29</div>
+            <a class="session-link"
+              href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDGWDSESYHXCDRGZJBMW73CVDBKJ&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQDWHIksHuIcTZSFlv7FUYVJATxxZxXl-JVL0foTf3CRIu0&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQDWHIksHuIcTZSFlv7FUYVJATxxZxXl-JVL0foTf3CRIu0&threadId=19%3Ameeting_NTliM2FhZmUtOTM4My00ZTVkLWIzNzYtNzk3NDg2ZjdmZTQ1%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=971088cf-cd6b-4459-a710-1410aff4b9b2&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet"
+              target="_blank" rel="noopener noreferrer">Recap: Session9 - QEA_T &amp; D_NA_Playwright &amp;
+              Typescript_Sep 18 Tuesday, September 29 | Meeting | Microsoft Teams</a>
+          </li>
+
+          <li class="session-item">
+            <div class="session-name">Session 10 - 9/30</div>
+            <a class="session-link"
+              href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDD6HZEXMU537BGI3WCK4ARNOLGH&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQB-Pkl2U7v4TI3YSuAi1yzHAWQywMCCED_sf3zwJHtidOc&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQB-Pkl2U7v4TI3YSuAi1yzHAWQywMCCED_sf3zwJHtidOc&threadId=19%3Ameeting_NDU5ZDU1NDgtM2YyOC00MDg5LTliMmItNzVlYTliOGZlNDJl%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=5f719d55-7f83-4d14-94a6-190363c5b691&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet"
+              target="_blank" rel="noopener noreferrer">Recap: Session10 - QEA_T &amp; D_NA_Playwright &amp;
+              Typescript_Sep 18 Wednesday, September 30 | Meeting | Microsoft Teams</a>
+          </li>
+
+          <li class="session-item">
+            <div class="session-name">Session 11 - 10/4</div>
+            <a class="session-link"
+              href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDFRIEQN23JOANA3XKKE2YIGWG4D&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQCxQSDdbS4DQbupRNYQaxuDARENEInWdxn3JXgJZDzs13E&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQCxQSDdbS4DQbupRNYQaxuDARENEInWdxn3JXgJZDzs13E&threadId=19%3Ameeting_M2ZjNWUwOTItZjhkMi00N2FlLWFmMjgtZGZjNDVhZWIxZWYx%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=13deecf2-b95c-4d69-8635-f1ad9f3ea71e&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet"
+              target="_blank" rel="noopener noreferrer">Recap: Session11 - QEA_T &amp; D_NA_Playwright &amp;
+              Typescript_Sep 18 Sunday, October 4 | Meeting | Microsoft Teams</a>
+          </li>
+
+          <li class="session-item">
+            <div class="session-name">Session 12 - 10/5</div>
+            <a class="session-link"
+              href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDDDA62WDLYEFBAZNKWAOGM33MBH&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQBjB7VhrwQoQZaqwHGZvbAnAVf0RRp-bZrUzW-87LMNpkY&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQBjB7VhrwQoQZaqwHGZvbAnAVf0RRp-bZrUzW-87LMNpkY&threadId=19%3Ameeting_ZWI4MDZlZDUtZTdmZC00ZmYyLWJiNjctOWUwOGYyZmY0OWE4%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=e1b149ec-9dab-41ad-ab83-338e225e572d&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet"
+              target="_blank" rel="noopener noreferrer">Recap: Session12 - QEA_T &amp; D_NA_Playwright &amp;
+              Typescript_Sep 18 Monday, October 5 | Meeting | Microsoft Teams</a>
+          </li>
+
+          <li class="session-item">
+            <div class="session-name">Session 13 - 10/6</div>
+            <a class="session-link"
+              href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDGRDSSAABNDPRB2JP3GSCIDRDAC&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQDRHKQABaN8Q6S_ZpCQOIwCAbDn3xazooQOng6PTDZ5u2s&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQDRHKQABaN8Q6S_ZpCQOIwCAbDn3xazooQOng6PTDZ5u2s&threadId=19%3Ameeting_NjZjN2I0OTAtOTE0YS00NzJjLTg3MzctMjJhMjM3NWI0MDE5%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=3e33f275-99fd-42f7-8a71-be058739cc2c&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet"
+              target="_blank" rel="noopener noreferrer">Recap: Session13 - QEA_T &amp; D_NA_Playwright &amp;
+              Typescript_Sep 18 Tuesday, October 6 | Meeting | Microsoft Teams</a>
+          </li>
+
+          <li class="session-item">
+            <div class="session-name">Session 14 - Skipped</div>
+            <span class="no-recording">Skipped</span>
+          </li>
+
+          <li class="session-item">
+            <div class="session-name">Session 15 - Skipped</div>
+            <span class="no-recording">Skipped</span>
+          </li>
+
+          <li class="session-item">
+            <div class="session-name">Session 16 - 10/11</div>
+            <a class="session-link"
+              href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDCMYUTDV34ENVF2TNDNIUUMPSME&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQBMxSY674RtS6m0bUUox8mEAY_9LwOZuMvsowr7V5eYBIA&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQBMxSY674RtS6m0bUUox8mEAY_9LwOZuMvsowr7V5eYBIA&threadId=19%3Ameeting_MTAwZGUyODgtMzI5NC00NzRjLWE0MDItYjRlNWFjNjFmNDJj%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=ed58e278-238f-460b-90a4-fc46f913221a&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet"
+              target="_blank" rel="noopener noreferrer">Recap: Session16 - QEA_T &amp; D_NA_Playwright &amp;
+              Typescript_Sep 18 Sunday, October 11 | Meeting | Microsoft Teams</a>
+          </li>
+
+          <li class="session-item">
+            <div class="session-name">Session 17 - 10/12</div>
+            <a class="session-link"
+              href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDDFQCO2HOT74NFINFEUKBYWL427&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQBlgJ2jun_jSoaUlFBxZfNfASKS19KZZtg3D9kIYbQsjwY&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQBlgJ2jun_jSoaUlFBxZfNfASKS19KZZtg3D9kIYbQsjwY&threadId=19%3Ameeting_OWJhNWY0OTQtZjA0MS00ZjA1LWFiY2ItZjgwNTRmNGZjYWRm%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=5f8b1231-2424-4d36-86cb-b7b472af6cc3&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet"
+              target="_blank" rel="noopener noreferrer">Recap: Session17 - QEA_T &amp; D_NA_Playwright &amp;
+              Typescript_Sep 18 Monday, October 12 | Meeting | Microsoft Teams</a>
+          </li>
+
+          <li class="session-item">
+            <div class="session-name">Session 18 - 10/13</div>
+            <a class="session-link"
+              href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDBQLXBS4ECH5ZFKIP2KKSMDH6WM&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQAwXcMuEEfuSqQ_SlSYM_rMARulaT95HDm6zFvIMnxGcI0&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQAwXcMuEEfuSqQ_SlSYM_rMARulaT95HDm6zFvIMnxGcI0&threadId=19%3Ameeting_MWQ1ODVhMzQtMWQ4Ni00NmNmLTgzYTQtMTBhMTE2OWU4ZjE1%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=0e5d5ab3-d973-4362-adce-dbb9aca584dd&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet"
+              target="_blank" rel="noopener noreferrer">Recap: Session18 - QEA_T &amp; D_NA_Playwright &amp;
+              Typescript_Sep 18 Tuesday, October 13 | Meeting | Microsoft Teams</a>
+          </li>
+
+          <li class="session-item">
+            <div class="session-name">Session 19 - 10/14</div>
+            <a class="session-link"
+              href="https://teams.microsoft.com/l/meetingrecap?driveId=b%21N-BS2cSfXk6bszZ4Uc3np8Rg_KUJFXxBrdF7iBwX8UiCAoEzzysiT7AorIj929lX&driveItemId=01ZZAIEDEXHY2BQ74MS5HKQYJAOOLBS32P&sitePath=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQCXPjQYf4yXTqhhIHOWGW9PAYfOn-VTKH9zDUhL0Z12zNE&fileUrl=https%3A%2F%2Fcognizantonline-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2F2422034_cognizant_com%2FIQCXPjQYf4yXTqhhIHOWGW9PAYfOn-VTKH9zDUhL0Z12zNE&threadId=19%3Ameeting_MmYyODkyZWItZjZmMC00OWFlLWJmZjEtNmYyY2YxMWQ1OWNm%40thread.v2&organizerId=9bf100b5-2328-4e02-a317-31cf819d31b1&tenantId=de08c407-19b9-427d-9fe8-edf254300ca7&callId=fe225382-dec4-49f8-9ffa-66e263776239&threadType=Meeting&meetingType=Scheduled&subType=RecapSharingLink_RecapChiclet"
+              target="_blank" rel="noopener noreferrer">Recap: Session19 - QEA_T &amp; D_NA_Playwright &amp;
+              Typescript_Sep 18 Wednesday, October 14 | Meeting | Microsoft Teams</a>
+          </li>
+        </ul>
+      </section>
+
+      <section id="assessments" class="content-section assessment-section">
+        <h2 class="assessment-header">Assessment</h2>
+        <div class="session-item">
+          <div class="session-name">Typescript Activity - 9/27</div>
+          <a class="session-link"
+            href="https://cognizantonline-my.sharepoint.com/:w:/g/personal/2422034_cognizant_com/IQAzxh_oiQ1lSrL0E-8GuZYhAXFpXyvmBpRx-Ulu3hsI7T0?e=HekIII"
+            target="_blank" rel="noopener noreferrer">TypeScript Activity.docx</a>
+        </div>
+      </section>
+
+      <section id="assignment-tracker" class="content-section assessment-section">
+        <h2 class="assessment-header">Assignment Tracker</h2>
+        <div class="session-item">
+          <div class="session-name">SEP 18 PW TS Onshore</div>
+          <a class="session-link"
+            href="https://cognizantonline-my.sharepoint.com/:x:/r/personal/2422034_cognizant_com/_layouts/15/Doc.aspx?sourcedoc=%7B9F3BE8CF-8C11-43A6-BD9F-8F3531683CBB%7D&file=Assignment%20Tracker%20-%20SEP%2018%20PW%20TS%20Onshore%20-%207%2030%20to%208%2030%20AM%20IST.xlsx&action=default&mobileredirect=true&DefaultItemOpen=1&wdwpf=c"
+            target="_blank" rel="noopener noreferrer">Assignment Tracker - 7:30 to 8:30 AM IST.xlsx</a>
+        </div>
+      </section>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
